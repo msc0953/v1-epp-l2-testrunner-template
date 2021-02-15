@@ -137,7 +137,7 @@ RUN chmod ugo+w /var/log \
   && chown ${ROBOT_UID}:${ROBOT_GID} /var/log
 
 # Update system path
-ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
+ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:/opt/install-azure-agent/bin:$PATH
 
 # Set up a volume for the generated reports
 VOLUME ${ROBOT_REPORTS_DIR}
@@ -148,5 +148,5 @@ USER ${ROBOT_UID}:${ROBOT_GID}
 WORKDIR ${ROBOT_WORK_DIR}
 
 # Execute all robot tests
-# CMD ["install-azure-agent.sh"]
+CMD ["install-azure-agent.sh"]
 CMD ["run-tests-in-virtual-screen.sh"]
