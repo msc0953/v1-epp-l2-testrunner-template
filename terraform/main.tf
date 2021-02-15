@@ -60,7 +60,7 @@ module "aci-devops-agent" {
   linux_agents_configuration = {
     agent_name_prefix = "v1-epp-l2-poc-agent"
     agent_pool_name   = var.test_runner_pool_name
-    count             = 5
+    count             = 0
     docker_image      = "testrunnercontainerregistry.azurecr.io/pipelinetestrunnerdocker"
     docker_tag        = "latest"
     cpu               = 1
