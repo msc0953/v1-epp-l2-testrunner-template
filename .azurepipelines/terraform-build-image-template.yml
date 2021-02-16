@@ -9,12 +9,12 @@ resources:
 - repo: self
 
 variables:
-- group: vg-l2-acr
-  dockerRegistryServiceConnection: $(TF_DOCKER_REGISTRY_SERVER_CONNECTION)
+  group: vg-l2-acr-terraform
+  dockerRegistryServiceConnection: '$[variables.TF_DOCKER_REGISTRY_SERVER_CONNECTION]'
+  containerRegistry: '$[variables.TF_LOGIN_SERVER'
   imageRepository: 'pipelinetestrunnerdocker'
-  containerRegistry: $(TF_LOGIN_SERVER)
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildNumber)'
+  tag: '$(Build.BuildId)'
   vmImageName: 'ubuntu-latest'
 
 stages:
