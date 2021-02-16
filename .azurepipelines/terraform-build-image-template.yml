@@ -9,14 +9,12 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '464dba11-c316-47bc-852d-9ea92b29ffa8'
+- group: vg-l2-acr
+  dockerRegistryServiceConnection: $(TF_DOCKER_REGISTRY_SERVER_CONNECTION)
   imageRepository: 'pipelinetestrunnerdocker'
-  containerRegistry: 'testrunnercontainerregistry.azurecr.io'
+  containerRegistry: $(TF_LOGIN_SERVER)
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
-
-  # Agent VM image name
+  tag: '$(Build.BuildNumber)'
   vmImageName: 'ubuntu-latest'
 
 stages:

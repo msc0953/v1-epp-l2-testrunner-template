@@ -58,10 +58,10 @@ module "aci-devops-agent" {
   subnet_name              = azurerm_subnet.aci-subnet.name
 
   linux_agents_configuration = {
-    agent_name_prefix = "v1-epp-l2-poc-agent"
+    agent_name_prefix = var.agent_name_prefix
     agent_pool_name   = var.test_runner_pool_name
     count             = 0
-    docker_image      = "testrunnercontainerregistry.azurecr.io/pipelinetestrunnerdocker"
+    docker_image      = "${var.acr_login_server}/${var.image_repository}"
     docker_tag        = "latest"
     cpu               = 1
     memory            = 2
@@ -70,8 +70,8 @@ module "aci-devops-agent" {
   azure_devops_personal_access_token = var.azure_personal_access_token
   
   image_registry_credential = {
-    username = "testrunnercontainerregistry"
-    password = "nkWa75=Qg6bhT7W0DezmJzi9GydVexfO"
-    server   = "testrunnercontainerregistry.azurecr.io"
+    username = var.acr_username
+    password = var.acr_password
+    server   = var.acr_login_server
   }
 }
