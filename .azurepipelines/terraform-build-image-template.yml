@@ -9,12 +9,14 @@ resources:
 - repo: self
 
 variables:
-  group: vg-l2-acr-terraform
-  dockerRegistryServiceConnection: '$[variables.TF_DOCKER_REGISTRY_SERVER_CONNECTION]'
-  containerRegistry: '$[variables.TF_LOGIN_SERVER'
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'c4f53428-73bf-4737-8cf4-7cba64f0be77'
   imageRepository: 'pipelinetestrunnerdocker'
+  containerRegistry: 'testrunnercontainerregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
+
+  # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
 stages:
